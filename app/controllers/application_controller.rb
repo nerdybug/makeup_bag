@@ -12,17 +12,22 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
-  
+
   get '/signup' do
     erb :'users/signup'
   end
 
   post '/signup' do
-    @user = User.create(params)
-    session[:user_id] = @user.id
-    erb :'users/show'
+    @taken = User.find_by(username: params[:username])
+    if @taken
+      erb :'users/taken'
+    else
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      erb :'users/show'
+    end
   end
-  
+
   get '/login' do
     erb :'users/login'
   end
@@ -36,7 +41,7 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     end
   end
-  
+
   get '/logout' do
     session.clear
     redirect '/'
