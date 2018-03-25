@@ -8,7 +8,7 @@
 <%else%>
 	<%@user.items.each do |item|%>
   <ul>
-    <li><p><%=item.name%></p></li>
+    <li><p><%=item.name%> <%=item.type_of_item%> - <%=item.color%></p></li>
   </ul>
 	<%end%>
 <%end%>
