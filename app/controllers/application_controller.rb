@@ -56,6 +56,7 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(id: session[:user_id])
     @item = Item.create(params[:item])
     @item.user = @user
+    @item.save
     binding.pry
     erb :'users/show'
   end
