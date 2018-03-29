@@ -3,13 +3,14 @@
 <form action="/items" method="POST">
 	<p>Name: <input type="text" name="item[name]"></p>
 	<p>Type: <input type="text" name="item[type_of_item]"></p>
-	<%Item.all.each do |item|%>
-		<%if item.type_of_item != nil && item.type_of_item != ""%>
-			<input type="checkbox" name="item[type_of_item]" value="<%=item.type_of_item%>"><%=item.type_of_item%></input>
+	<%if @user.items.all != []%>
+		<%@user.items.all.each do |item|%>
+			<%if item.type_of_item != nil && item.type_of_item != ""%>
+				<input type="checkbox" name="item[type_of_item]" value="<%=item.type_of_item%>"><%=item.type_of_item%></input>
+			<%end%>
 		<%end%>
 	<%end%>
-
-	<p>Color: <input type="text" name="item[color]"></p>
+	<p>Color: <input type="text" name="item[color]"> (leave blank if none)</p>
 	<p>Favorite? <input type="checkbox" name="item[favorite]"></p>
 	<p>Need to purchase more? <input type="checkbox" name="item[need_more]"></p>
 	<input type="submit" value="Add">
