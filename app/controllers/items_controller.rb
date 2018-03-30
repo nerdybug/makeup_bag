@@ -8,8 +8,7 @@ class ItemsController < ApplicationController
   post '/items' do
     @user = User.find_by(id: session[:user_id])
     @item = Item.create(params[:item])
-    @item.user_id = @user.id
-    @item.save
+    @item.update(user_id: @user.id)
     binding.pry
     erb :'users/show'
   end
