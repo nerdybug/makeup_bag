@@ -1,20 +1,43 @@
 <h1>Add an item to your bag</h1>
 <br>
 <form action="/items" method="POST">
-	<p>Name: <input type="text" name="item[name]"></p>
-	<p>Type: <input type="text" name="item[type_of_item]">
-	<%if @user.items.all != []%>
-		<select name="item[type_of_item]">
-			<option disabled selected>or choose existing</option>
-			<%@user.items.all.each do |item|%>
-				<%if item.type_of_item != nil && item.type_of_item != ""%>
-					<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
-				<%end%>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" name="item[name]"</td>
+		</tr>
+		<tr>
+			<td>Type:</td>
+			<td><input type="text" name="item[type_of_item]"></td>
+			<%if @user.items.all != []%>
+					<tr>
+						<td>...or</td>
+						<td>
+							<select name="item[type_of_item]">
+								<option disabled selected>or choose existing</option>
+								<%@user.items.all.each do |item|%>
+									<%if item.type_of_item != nil && item.type_of_item != ""%>
+										<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
+									<%end%>
+								<%end%>
+							</select>
+						</td>
+					</tr>
 			<%end%>
-		</select>
-	<%end%></p>
-	<p>Color: <input type="text" name="item[color]" placeholder="(leave blank if none)"></p>
-	<p>Favorite? <input type="checkbox" name="item[favorite]"></p>
-	<p>Need to purchase more? <input type="checkbox" name="item[need_more]"></p>
+		</tr>
+		<tr>
+			<td>Color:</td>
+			<td><input type="text" name="item[color]" placeholder="(leave blank if none)"></td>
+		</tr>
+		<tr>
+			<td>Favorite?</td>
+			<td><input type="checkbox" name="item[favorite]"></td>
+		</tr>
+		<tr>
+			<td>Need more?</td>
+			<td><input type="checkbox" name="item[need_more]"></td>
+		</tr>
+	</table>
+	<br></br>
 	<input type="submit" value="Add">
 </form>
