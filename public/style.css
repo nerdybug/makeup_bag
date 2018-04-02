@@ -1,7 +1,7 @@
 table {
   background-color: aqua;
   border: 10px outset gray;
-  border-spacing: 3px;
+  border-spacing: 5px;
   text-align: center;
 }
 table tr td {
