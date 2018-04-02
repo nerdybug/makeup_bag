@@ -4,6 +4,10 @@ table {
   border-spacing: 5px;
   text-align: center;
 }
+table tr th {
+  background-color: white;
+  padding: 2px 5px 2px 5px;
+}
 table tr td {
   background-color: white;
   padding: 2px 5px 2px 5px;
