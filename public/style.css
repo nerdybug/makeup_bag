@@ -1,0 +1,19 @@
+table {
+  background-color: aqua;
+  text-align: center;
+}
+table tr td {
+  background-color: white;
+}
+a {
+  color: black;
+}
+a:hover {
+  background-color: aqua;
+}
+a:visited {
+  color: gray;
+}
+h1 {
+  text-shadow: 2px 2px aqua;
+}
