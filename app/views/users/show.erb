@@ -6,12 +6,12 @@
 <%if @user.items.empty?%>
 	<p>Your bag is empty.</p>
 	<% else %>
-		<table border="10" style="background-color: aqua;">
-			 <tr><th style="background-color: white">NAME</th><th style="background-color: white">TYPE</th><th style="background-color: white">COLOR</th></tr>
+		<table>
+			 <tr><th>NAME</th><th>TYPE</th><th>COLOR</th></tr>
 			 <%@user.items.each do |item|%>
-					<tr> <td style="background-color: white"><%=item.name%></td>
-					<td style="background-color: white"><%=item.type_of_item if item.type_of_item != nil%></td>
-					<td style="background-color: white"><%=item.color%></td> </tr>
+					<tr> <td><%=item.name%></td>
+					<td><%=item.type_of_item if item.type_of_item != nil%></td>
+					<td><%=item.color%></td> </tr>
 			 <%end%>
 		</table>
 <%end%>
