@@ -6,6 +6,7 @@ table {
 }
 table tr td {
   background-color: white;
+  padding: 2px 5px 2px 5px;
 }
 a {
   color: black;
