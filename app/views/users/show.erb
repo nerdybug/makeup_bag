@@ -8,13 +8,23 @@
 	<% else %>
 		<table>
 			 <tr>
-				 <th>NAME</th><th>TYPE</th><th>COLOR</th>
+				 <th>NAME</th><th>TYPE</th><th>COLOR</th><th>FAV</th><th>MORE</th>
 			 </tr>
 			 <%@user.items.each do |item|%>
 				<tr>
 					<td><a href="/items/<%=item.id%>"><%=item.name%></a></td>
 					<td><%=item.type_of_item if item.type_of_item != nil%></td>
 					<td><%=item.color%></td>
+					<td>
+					<%if item.favorite%>
+						&#10024;
+					<%end%>
+					</td>
+					<td>
+					<%if item.need_more%>
+						&#10071;
+					<%end%>
+					</td>
 				</tr>
 			 <%end%>
 		</table>
