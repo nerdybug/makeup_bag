@@ -1,0 +1,46 @@
+<h1>Edit</h1>
+<br>
+<a href="/items/<%=@item.id%>">Back to item</a>
+<br><br>
+<form action="/items/<%=@item.id%>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" name="item[name]" placeholder="<%=@item.name%>"></td>
+		</tr>
+		<tr>
+			<td>Type:</td>
+			<td><input type="text" name="item[type_of_item]" placeholder="<%=@item.type_of_item%>"></td>
+			<%if @user.items.all != []%>
+					<tr>
+						<td>...or</td>
+						<td>
+							<select name="item[type_of_item]">
+								<option disabled selected>choose existing</option>
+								<%@user.items.all.each do |item|%>
+									<%if item.type_of_item != nil && item.type_of_item != ""%>
+										<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
+									<%end%>
+								<%end%>
+							</select>
+						</td>
+					</tr>
+			<%end%>
+		</tr>
+		<tr>
+			<td>Color:</td>
+			<td><input type="text" name="item[color]" placeholder="<%=@item.color if @item.color != nil || ""%>"></td>
+		</tr>
+		<tr>
+			<td>Favorite?</td>
+			<td><input type="checkbox" name="item[favorite]">&#10024;</td>
+		</tr>
+		<tr>
+			<td>Need more?</td>
+			<td><input type="checkbox" name="item[need_more]">&#10071;</td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" value="Save">
+</form>
