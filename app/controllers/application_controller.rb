@@ -47,4 +47,8 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  get '/bag' do
+    @user = User.find_by(id: session[:user_id])
+    erb :'users/show'
+  end
 end
