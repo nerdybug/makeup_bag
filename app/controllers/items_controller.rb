@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   get '/items/:id/edit' do
+    @user = User.find_by(id: session[:user_id])
     @item = Item.find_by(id: params[:id])
     erb :'items/edit'
   end
