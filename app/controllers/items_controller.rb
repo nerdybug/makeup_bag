@@ -23,4 +23,24 @@ class ItemsController < ApplicationController
     @item = Item.find_by(id: params[:id])
     erb :'items/edit'
   end
+
+  patch '/items/:id' do
+    @item = Item.find_by(id: params[:id])
+    if params[:item][:name] != ""
+    	@item.update(name: params[:item][:name])
+    end
+    if params[:item][:type_of_item] != ""
+    	@item.update(type_of_item: params[:item][:type_of_item])
+    end
+    if params[:item][:color] != ""
+    	@item.update(color: params[:item][:color])
+    end
+    if params[:item][:favorite]
+      @item.update(favorite: params[:item][:favorite])
+    end
+    if params[:item][:need_more]
+      @item.update(need_more: params[:item][:need_more])
+    end
+    redirect "/items/#{@item.id}"
+  end
 end
