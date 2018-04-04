@@ -14,7 +14,7 @@
 						<td>...or</td>
 						<td>
 							<select name="item[type_of_item]">
-								<option disabled selected>or choose existing</option>
+								<option disabled selected>choose existing</option>
 								<%@user.items.all.each do |item|%>
 									<%if item.type_of_item != nil && item.type_of_item != ""%>
 										<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
