@@ -7,11 +7,15 @@
 	<p>Your bag is empty.</p>
 	<% else %>
 		<table>
-			 <tr><th>NAME</th><th>TYPE</th><th>COLOR</th></tr>
+			 <tr>
+				 <th>NAME</th><th>TYPE</th><th>COLOR</th>
+			 </tr>
 			 <%@user.items.each do |item|%>
-					<tr> <td><a href="/items/<%=item.id%>"><%=item.name%></a></td>
+				<tr>
+					<td><a href="/items/<%=item.id%>"><%=item.name%></a></td>
 					<td><%=item.type_of_item if item.type_of_item != nil%></td>
-					<td><%=item.color%></td> </tr>
+					<td><%=item.color%></td>
+				</tr>
 			 <%end%>
 		</table>
 <%end%>
