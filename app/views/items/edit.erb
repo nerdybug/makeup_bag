@@ -1,6 +1,8 @@
 <h1>Edit</h1>
 <br>
-<a href="/items/<%=@item.id%>">Back to item</a>
+<a href="/items/<%=@item.id%>">Back to Item</a>
+<br><br>
+<a href="/bag">Back to Bag</a>
 <br><br>
 <form action="/items/<%=@item.id%>" method="POST">
   <input type="hidden" name="_method" value="patch">
@@ -52,3 +54,5 @@
 	<br>
 	<input type="submit" value="Save">
 </form>
+<br>
+<a href="/logout">Logout</a>
