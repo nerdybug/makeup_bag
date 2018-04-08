@@ -27,5 +27,8 @@ h1 {
   text-shadow: 2px 2px aqua;
 }
 table a {
-  text-decoration: none
+  text-decoration: none;
+}
+table a:hover {
+  text-decoration: underline;
 }
