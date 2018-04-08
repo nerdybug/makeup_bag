@@ -1,21 +1,31 @@
-<h1>Detail View</h1>
+<h1>Item View</h1>
 <br>
 <a href="/items/<%=@item.id%>/edit">Edit</a>
 <br><br>
 
 <table>
   <tr>
-    <th>NAME</th><th>TYPE</th><th>COLOR</th><th>FAV</th><th>MORE</th>
+    <td>Name:</td>
+    <td><%=@item.name%></td>
   </tr>
   <tr>
-    <td><%=@item.name%></td>
+    <td>Type:</td>
     <td><%=@item.type_of_item%></td>
+  </tr>
+  <tr>
+    <td>Color:</td>
     <td><%=@item.color%></td>
+  </tr>
+  <tr>
+    <td>Fav?</td>
     <td>
     <%if @item.favorite%>
       &#10024;
     <%end%>
     </td>
+  </tr>
+  <tr>
+    <td>More?</td>
     <td>
     <%if @item.need_more%>
       &#10071;
