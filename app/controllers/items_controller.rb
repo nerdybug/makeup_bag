@@ -27,7 +27,12 @@ class ItemsController < ApplicationController
   patch '/items/:id' do
     @item = Item.find_by(id: params[:id])
     params[:item].each {|k,v| @item.update("#{k}": "#{v}") if v != "" && k != "favorite" && k != "need_more"}
-
+    if !params[:item].include?("favorite") && @item.favorite
+      @item.update(favorite: false)
+    end
+    if !params[:item].include?("need_more") && @item.need_more
+      @item.update(need_more: false)
+    end
     redirect "/items/#{@item.id}"
   end
 end
