@@ -32,14 +32,22 @@
 			<td>Color:</td>
 			<td><input type="text" name="item[color]" placeholder="<%=@item.color if @item.color != nil || ""%>"></td>
 		</tr>
-		<tr>
-			<td>Favorite?</td>
-			<td><input type="checkbox" name="item[favorite]">&#10024;</td>
-		</tr>
-		<tr>
-			<td>Need more?</td>
-			<td><input type="checkbox" name="item[need_more]">&#10071;</td>
-		</tr>
+    <tr>
+    	<td>Favorite?</td>
+    	<%if @item.favorite%>
+    		<td><input type="checkbox" name="item[favorite]" checked>&#10024;</td>
+    	<%else%>
+    		<td><input type="checkbox" name="item[favorite]">&#10024;</td>
+    	<%end%>
+    </tr>
+    <tr>
+    	<td>Need more?</td>
+    	<%if @item.need_more%>
+    		<td><input type="checkbox" name="item[need_more]" checked>&#10071;</td>
+    	<%else%>
+    		<td><input type="checkbox" name="item[need_more]">&#10071;</td>
+    	<%end%>
+    </tr>
 	</table>
 	<br>
 	<input type="submit" value="Save">
