@@ -33,6 +33,10 @@ class ItemsController < ApplicationController
     if !params[:item].include?("need_more") && @item.need_more
       @item.update(need_more: false)
     end
+    if params.include?("brand")
+      @brand = Brand.create(params[:brand])
+      @item.brands << @brand
+    end
     redirect "/items/#{@item.id}"
   end
 end
