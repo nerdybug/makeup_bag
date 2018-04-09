@@ -13,6 +13,10 @@
     <td><%=@item.type_of_item%></td>
   </tr>
   <tr>
+    <td>Brand:</td>
+    <td><%=@item.brands[0].name if !nil%></td>
+  </tr>
+  <tr>
     <td>Color:</td>
     <td><%=@item.color%></td>
   </tr>
