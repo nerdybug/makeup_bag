@@ -30,6 +30,10 @@
 					</tr>
 			<%end%>
 		</tr>
+    <tr>
+      <td>Brand:</td>
+      <td><input type="text" name="brand[name]" placeholder="<%=@item.brand_id if @item.brand_id != nil%>"></td>
+    </tr>
 		<tr>
 			<td>Color:</td>
 			<td><input type="text" name="item[color]" placeholder="<%=@item.color if @item.color != nil || ""%>"></td>
