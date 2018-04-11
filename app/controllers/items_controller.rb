@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
     end
     if params.include?("brand")
       @brand = Brand.create(params[:brand])
-      @item.brands << @brand
+      @item.update(brand_id: @brand.id)
     end
     redirect "/items/#{@item.id}"
   end
