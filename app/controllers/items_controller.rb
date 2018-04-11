@@ -9,6 +9,9 @@ class ItemsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @item = Item.create(params[:item])
     @item.update(user_id: @user.id)
+    @brand = Brand.create(params[:brand])
+    @item.update(brand_id: @brand.id)
+    @item.brands << @brand
     binding.pry
     erb :'users/show'
   end
@@ -36,6 +39,7 @@ class ItemsController < ApplicationController
     if params.include?("brand")
       @brand = Brand.create(params[:brand])
       @item.update(brand_id: @brand.id)
+      @item.brands << @brand
     end
     redirect "/items/#{@item.id}"
   end
