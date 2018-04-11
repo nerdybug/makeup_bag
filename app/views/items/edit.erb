@@ -32,7 +32,7 @@
 		</tr>
     <tr>
       <td>Brand:</td>
-      <td><input type="text" name="brand[name]" placeholder="<%=@item.brand_id if @item.brand_id != nil%>"></td>
+      <td><input type="text" name="brand[name]" placeholder="<%=Brand.find_by(id: @item.brand_id).name if @item.brand_id != nil%>"></td>
     </tr>
 		<tr>
 			<td>Color:</td>
