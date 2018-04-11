@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <td>Brand:</td>
-    <td><%=@item.brands[0].name if !nil%></td>
+    <td><%=Brand.find_by(id: @item.brand_id).name if @item.brand_id != nil%></td>
   </tr>
   <tr>
     <td>Color:</td>
