@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
       @item.update(need_more: true)
     end
 
-    if params.include?("brand")
+    if params.include?("brand") && !params[:brand][:name].empty?
       @brand = Brand.create(params[:brand])
       @item.update(brand_id: @brand.id)
       @item.brands << @brand
