@@ -30,12 +30,18 @@ class ItemsController < ApplicationController
   patch '/items/:id' do
     @item = Item.find_by(id: params[:id])
     params[:item].each {|k,v| @item.update("#{k}": "#{v}") if v != "" && k != "favorite" && k != "need_more"}
+
     if !params[:item].include?("favorite") && @item.favorite
       @item.update(favorite: false)
+    elsif params[:item].include?("favorite") && !@item.favorite
+      @item.update(favorite: true)
     end
     if !params[:item].include?("need_more") && @item.need_more
       @item.update(need_more: false)
+    elsif params[:item].include?("need_more") && !@item.need_more
+      @item.update(need_more: true)
     end
+
     if params.include?("brand")
       @brand = Brand.create(params[:brand])
       @item.update(brand_id: @brand.id)
