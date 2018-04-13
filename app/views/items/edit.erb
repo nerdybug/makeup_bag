@@ -14,21 +14,21 @@
 		<tr>
 			<td>Type:</td>
 			<td><input type="text" name="item[type_of_item]" placeholder="<%=@item.type_of_item%>"></td>
-			<%if @user.items.all != []%>
-					<tr>
-						<td>...or</td>
-						<td>
-							<select name="item[type_of_item]">
-								<option disabled selected>choose existing</option>
-								<%@user.items.all.each do |item|%>
-									<%if item.type_of_item != nil && item.type_of_item != ""%>
-										<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
-									<%end%>
-								<%end%>
-							</select>
-						</td>
-					</tr>
-			<%end%>
+		<%if @user.items.all != []%>
+		<tr>
+			<td>...or</td>
+			<td>
+				<select name="item[type_of_item]">
+					<option disabled selected>choose existing</option>
+					<%@user.items.all.each do |item|%>
+						<%if item.type_of_item != nil && item.type_of_item != ""%>
+							<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
+						<%end%>
+					<%end%>
+				</select>
+			</td>
+		</tr>
+		<%end%>
 		</tr>
     <tr>
       <td>Brand:</td>
