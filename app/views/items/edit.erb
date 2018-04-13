@@ -34,7 +34,6 @@
       <td>Brand:</td>
       <td><input type="text" name="brand[name]" placeholder="<%=Brand.find_by(id: @item.brand_id).name if @item.brand_id != nil%>"></td>
     </tr>
-    <%binding.pry%>
     <% if !@user.brands.empty? %>
     <tr>
       <td>...or</td>
