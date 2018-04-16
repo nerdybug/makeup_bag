@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   post '/items' do
     @user = User.find_by(id: session[:user_id])
     params[:item].each do |k,v|
-      if k != "favorite" || k != "need_more"
+      if v.is_a? String
         params[:item][k] = v.strip
       end
     end
