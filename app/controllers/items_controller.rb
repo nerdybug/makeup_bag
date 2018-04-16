@@ -8,9 +8,7 @@ class ItemsController < ApplicationController
   post '/items' do
     @user = User.find_by(id: session[:user_id])
     params[:item].each do |k,v|
-      if v.is_a? String
-        params[:item][k] = v.strip
-      end
+      params[:item][k] = v.strip
     end
     @item = Item.create(params[:item])
     @item.update(user_id: @user.id)
