@@ -7,9 +7,14 @@ class ItemsController < ApplicationController
 
   post '/items' do
     @user = User.find_by(id: session[:user_id])
+    params[:item].each do |k,v|
+      if k != "favorite" || k != "need_more"
+        params[:item][k] = v.strip
+      end
+    end
     @item = Item.create(params[:item])
     @item.update(user_id: @user.id)
-    @brand = Brand.create(params[:brand])
+    @brand = Brand.create(name: params[:brand][:name].strip)
     @item.update(brand_id: @brand.id)
     @item.brands << @brand
     binding.pry
