@@ -12,17 +12,17 @@ class ItemsController < ApplicationController
   post '/items' do
     @user = User.find_by(id: session[:user_id])
     strip_string_params(params[:item])
-    if valid?(params[:item])
-      @item = Item.create(params[:item])
+    if valid?(params[:item]) || valid?(params[:brand])
+    	redirect '/error'
     else
-      redirect '/error'
+    	@item = Item.create(params[:item])
+    	@brand = Brand.create(strip_string_params(params[:brand]))
+      @item.update(user_id: @user.id)
+      @brand = Brand.create(strip_string_params(params[:brand]))
+      @item.update(brand_id: @brand.id)
+      @item.brands << @brand
+      erb :'users/show'
     end
-
-    @item.update(user_id: @user.id)
-    @brand = Brand.create(strip_string_params(params[:brand]))
-    @item.update(brand_id: @brand.id)
-    @item.brands << @brand
-    erb :'users/show'
   end
 
   get '/items/:id' do
