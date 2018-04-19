@@ -58,9 +58,9 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def strip_string_params(item_params_hash)
-    	item_params_hash.each do |k,v|
-    		item_params_hash[k] = v.strip
+    def strip_string_params(params_hash)
+    	params_hash.each do |k,v|
+    		params_hash[k] = v.strip
     	end
     end
   end
