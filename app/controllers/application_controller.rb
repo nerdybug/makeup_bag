@@ -65,7 +65,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def valid?(params_hash)
-      params_hash.any? {|k,v| v =~ /[^a-zA-Z\d\s]/} # returns false if no matches
+      params_hash.any? {|k,v| v =~ /[^a-zA-Z\d\s]/} # returns false if no match
     end
   end
 end
