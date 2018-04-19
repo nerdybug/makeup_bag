@@ -7,9 +7,7 @@ class ItemsController < ApplicationController
 
   post '/items' do
     @user = User.find_by(id: session[:user_id])
-    params[:item].each do |k,v|
-      params[:item][k] = v.strip
-    end
+    strip_string_params(params[:item])
     @item = Item.create(params[:item])
     @item.update(user_id: @user.id)
     @brand = Brand.create(name: params[:brand][:name].strip)
