@@ -7,6 +7,11 @@
 
   <body>
     <div class="content">
+      <% flash.keys.each do |type| %>
+        <div data-alert class="flash">
+          <%= flash[type] %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>
