@@ -41,3 +41,6 @@ table {
   margin: auto;
   text-align: center;
 }
+.flash {
+  background-color: aqua;
+}
