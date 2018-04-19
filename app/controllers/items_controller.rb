@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     strip_string_params(params[:item])
     @item = Item.create(params[:item])
     @item.update(user_id: @user.id)
-    @brand = Brand.create(name: params[:brand][:name].strip)
+    @brand = Brand.create(strip_string_params(params[:brand]))
     @item.update(brand_id: @brand.id)
     @item.brands << @brand
     erb :'users/show'
