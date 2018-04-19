@@ -5,13 +5,17 @@ class ItemsController < ApplicationController
     erb :'items/add'
   end
 
+  get '/error' do
+    erb :'items/error'
+  end
+
   post '/items' do
     @user = User.find_by(id: session[:user_id])
     strip_string_params(params[:item])
     if valid?(params[:item])
       @item = Item.create(params[:item])
     else
-      redirect '/items/add'
+      redirect '/error'
     end
 
     @item.update(user_id: @user.id)
