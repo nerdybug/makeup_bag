@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     strip_string_params(params[:item])
     if valid?(params[:item]) || valid?(params[:brand])
-      flash[:error] = "You entered invalid data. Please try again using alphanumeric characters."
+      flash.now[:error] = "You entered invalid data. Please try again using alphanumeric characters."
       erb :'items/add'
     else
     	@item = Item.create(params[:item])
