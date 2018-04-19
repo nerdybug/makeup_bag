@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
     @brand = Brand.create(name: params[:brand][:name].strip)
     @item.update(brand_id: @brand.id)
     @item.brands << @brand
-    binding.pry
     erb :'users/show'
   end
 
