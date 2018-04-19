@@ -56,4 +56,12 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(id: session[:user_id])
     erb :'users/show'
   end
+
+  helpers do
+    def strip_string_params(item_params_hash)
+    	item_params_hash.each do |k,v|
+    		item_params_hash[k] = v.strip
+    	end
+    end
+  end
 end
