@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     strip_string_params(params[:item])
     if !valid?(params[:item]) || !valid?(params[:brand])
-      flash.now[:error] = "You entered invalid data. Please try again using alphanumeric characters."
+      flash.now[:error] = "You entered invalid data. Please try again without special characters."
       erb :'items/add'
     else
     	@item = Item.create(params[:item])
@@ -40,14 +40,14 @@ class ItemsController < ApplicationController
     @item = Item.find_by(id: params[:id])
 
     if !valid?(params[:item])
-      flash[:error] = "You entered invalid data. Please try again using alphanumeric characters."
+      flash[:error] = "You entered invalid data. Please try again without special characters."
       redirect "/items/#{@item.id}/edit"
     else
       params[:item].each {|k,v| @item.update("#{k}": "#{v}") if v != "" && k != "favorite" && k != "need_more"}
     end
 
     if params.include?("brand") && !params[:brand][:name].empty? && !valid?(params[:brand])
-      flash[:error] = "You entered invalid data. Please try again using alphanumeric characters."
+      flash[:error] = "You entered invalid data. Please try again without special characters."
       redirect "/items/#{@item.id}/edit"
     else
       @brand = Brand.create(params[:brand])
