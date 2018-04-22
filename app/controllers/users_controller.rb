@@ -5,9 +5,11 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @taken = User.find_by(username: params[:username])
-    if @taken
-      erb :'users/taken'
+    params[:username] = params[:username].strip
+
+    if User.find_by(username: params[:username])
+      flash.now[:taken] = "That username is taken. Please try again."
+      erb :'users/signup'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
@@ -20,6 +22,8 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
+    params[:username] = params[:username].strip
+
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
