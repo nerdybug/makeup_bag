@@ -1,13 +1,14 @@
 <h1><%=@user.username%>'s Makeup Bag</h1>
 <br>
-<%if @user.items.empty?%>
+<%if @items.empty?%>
 	<p>Your bag is empty.</p>
 	<% else %>
 		<table>
 			 <tr>
-				 <th>NAME</th><th>TYPE</th><th>BRAND</th><th>COLOR</th><th>FAV</th><th>MORE</th>
+				 <th><a href="/order/name/asc">&#9652;</a>NAME<a href="/order/name/desc">&#9662;</a></th>
+				 <th>TYPE</th><th>BRAND</th><th>COLOR</th><th>FAV</th><th>MORE</th>
 			 </tr>
-			 <%@user.items.each do |item|%>
+			 <%@items.each do |item|%>
 				<tr>
 					<td><a href="/items/<%=item.id%>"><%=item.name%></a></td>
 					<td><%=item.type_of_item if item.type_of_item != nil%></td>
