@@ -35,6 +35,13 @@ class UsersController < ApplicationController
 
   get '/bag' do
     @user = User.find_by(id: session[:user_id])
+    @items = @user.items
+    erb :'users/show'
+  end
+
+  get '/order/:column/:direction' do
+    @user = User.find_by(id: session[:user_id])
+    @items = @user.items.order("#{params[:column]} #{params[:direction].upcase}")
     erb :'users/show'
   end
 
