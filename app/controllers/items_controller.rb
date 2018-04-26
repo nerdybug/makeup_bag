@@ -74,6 +74,7 @@ class ItemsController < ApplicationController
   get '/items/:id/delete' do
     @item = Item.find_by(id: params[:id])
     @item.destroy
+    flash[:deleted] = "The item was deleted."
     redirect '/bag'
   end
 end
