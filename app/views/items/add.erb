@@ -31,6 +31,19 @@
 			<td>Brand:</td>
 			<td><input type="text" name="brand[name]"></td>
 		</tr>
+		<%if !@user.brands.empty?%>
+    <tr>
+      <td>...or</td>
+      <td>
+        <select name="brand[name]">
+          <option disabled selected>choose existing</option>
+          <%@user.brands.all.each do |brand|%>
+            <option value="<%=brand.name%>"><%=brand.name%></option>
+          <%end%>
+        </select>
+      </td>
+    </tr>
+    <%end%>
 		<tr>
 			<td>Color:</td>
 			<td><input type="text" name="item[color]" placeholder="(leave blank if none)"></td>
