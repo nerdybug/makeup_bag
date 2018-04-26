@@ -17,8 +17,9 @@ class ItemsController < ApplicationController
       erb :'items/add'
     else
     	@item = Item.create(params[:item])
-    	@brand = Brand.create(strip_string_params(params[:brand]))
       @item.update(user_id: @user.id)
+      @brand = Brand.create(strip_string_params(params[:brand]))
+      @item.update(brand_id: @brand.id)
       @item.brands << @brand
       redirect '/bag'
     end
