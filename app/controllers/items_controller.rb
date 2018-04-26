@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     	@brand = Brand.create(strip_string_params(params[:brand]))
       @item.update(user_id: @user.id)
       @item.brands << @brand
-      erb :'users/show'
+      redirect '/bag'
     end
   end
 
