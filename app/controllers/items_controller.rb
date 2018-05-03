@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
     	@item = Item.create(params[:item])
       @item.update(user_id: @user.id)
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
-      binding.pry
       @item.update(brand_id: @brand.id)
       @item.brands << @brand if !@user.brands.include?(@brand)
       redirect '/bag'
@@ -47,10 +46,10 @@ class ItemsController < ApplicationController
       params[:item].each {|k,v| @item.update("#{k}": "#{v}") if v != "" && k != "favorite" && k != "need_more"}
     end
 
-    if params.include?("brand") && !params[:brand][:name].empty? && !valid?(params[:brand])
+    if params.include?("brand") && !valid?(params[:brand])
       flash[:error] = "You entered invalid data. Please try again."
       redirect "/items/#{@item.id}/edit"
-    elsif !params[:brand][:name].empty?
+    else
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
       @item.brands << @brand if !@user.brands.include?(@brand)
