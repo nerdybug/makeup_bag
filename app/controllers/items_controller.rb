@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       binding.pry
       @item.update(brand_id: @brand.id)
-      @item.brands << @brand if !@item.brands.include?(@brand)
+      @item.brands << @brand if !@user.brands.include?(@brand)
       redirect '/bag'
     end
   end
@@ -50,10 +50,10 @@ class ItemsController < ApplicationController
     if params.include?("brand") && !params[:brand][:name].empty? && !valid?(params[:brand])
       flash[:error] = "You entered invalid data. Please try again without special characters."
       redirect "/items/#{@item.id}/edit"
-    else
+    elsif !params[:brand][:name].empty?
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
-      @item.brands << @brand if !@item.brands.include?(@brand)
+      @item.brands << @brand if !@user.brands.include?(@brand)
     end
 
     if !params[:item].include?("favorite") && @item.favorite
