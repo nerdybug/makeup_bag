@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
     if params.include?("brand") && !valid?(params[:brand])
       flash[:error] = "You entered invalid data. Please try again."
       redirect "/items/#{@item.id}/edit"
-    else
+    elsif !blank?(params[:brand])
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
       @item.brands << @brand if !@user.brands.include?(@brand)
