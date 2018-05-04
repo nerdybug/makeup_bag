@@ -22,9 +22,13 @@ class ApplicationController < Sinatra::Base
     	end
     end
 
-    def valid?(params_hash) # TRUE if params are valid (i.e. containing no special characters, not empty)
+    def valid?(params_hash) # TRUE if params are valid (i.e. containing no special characters)
       strip_string_params(params_hash)
-      !params_hash.any? {|k,v| v =~ /[^a-zA-Z\d\s]/} && !params_hash.any? {|k,v| v == ""}
+      !params_hash.any? {|k,v| v =~ /[^a-zA-Z\d\s]/}
+    end
+
+    def blank?(params_hash) # TRUE if params have blank values
+      params_hash.any? {|k,v| v == ""}
     end
   end
 end
