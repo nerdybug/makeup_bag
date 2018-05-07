@@ -31,7 +31,7 @@
 		</tr>
     <tr>
       <td>Brand:</td>
-      <td><input type="text" name="brand[name]" placeholder="<%=Brand.find_by(id: @item.brand_id).name if @item.brand_id != nil%>"></td>
+      <td><input type="text" name="brand[name]" placeholder="<%=Brand.find_by(id: @item.brand_id).name%>"></td>
     </tr>
     <% if !@user.brands.empty? %>
     <tr>
@@ -48,7 +48,7 @@
     <% end %>
 		<tr>
 			<td>Color:</td>
-			<td><input type="text" name="item[color]" placeholder="<%=@item.color if @item.color != nil || ""%>"></td>
+			<td><input type="text" name="item[color]" placeholder="<%=@item.color%>"></td>
 		</tr>
     <tr>
     	<td>Favorite?</td>
