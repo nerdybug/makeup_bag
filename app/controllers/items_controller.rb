@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   post '/items' do
     @user = User.find_by(id: session[:user_id])
-    if !valid?(params[:item]) || !valid?(params[:brand]) || blank?(params[:brand])
+    if !valid?(params[:item]) || !valid?(params[:brand]) || blank?(params[:brand]) || blank?(params[:item])
       flash.now[:error] = "You entered invalid data. Please try again."
       erb :'items/add'
     else
