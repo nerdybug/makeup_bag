@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def blank?(params_hash) # TRUE if params have blank values
-      params_hash.any? {|k,v| v == ""}
+      params_hash.any? {|k,v| v == "" if k != "color"}
     end
   end
 end
