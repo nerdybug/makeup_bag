@@ -20,10 +20,9 @@
 			<td>
 				<select name="item[type_of_item]">
 					<option disabled selected>choose existing</option>
-					<%@user.items.all.each do |item|%>
-						<%if item.type_of_item != nil && item.type_of_item != ""%>
-							<option value="<%=item.type_of_item%>"><%=item.type_of_item%></option>
-						<%end%>
+          <%@types = @user.items.collect {|item| item.type_of_item}.uniq%>
+          <%@types.each do |type|%>
+            <option value="<%=type%>"><%=type%></option>
 					<%end%>
 				</select>
 			</td>
