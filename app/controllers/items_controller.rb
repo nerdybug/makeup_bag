@@ -14,6 +14,9 @@ class ItemsController < ApplicationController
     if !valid?(params[:item]) || !valid?(params[:brand]) || blank?(params[:brand]) || blank?(params[:item])
       flash.now[:error] = "You entered invalid data. Please try again."
       erb :'items/add'
+    elsif @user.items.select {|item| item.name.match /#{params[:item][:name]}/i}
+      flash[:exists] = "That item already exists."
+      redirect "/items/#{@user.items.select {|item| item.name.match /#{params[:item][:name]}/i}[0].id}"
     else
     	@item = Item.create(params[:item])
       @item.update(user_id: @user.id)
