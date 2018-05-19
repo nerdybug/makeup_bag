@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
     params[:username] = params[:username].strip
 
     if User.any? {|user| user.username.match /#{params[:username]}/i}
