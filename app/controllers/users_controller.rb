@@ -5,14 +5,16 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
+    binding.pry
     params[:username] = params[:username].strip
 
-    if User.find_by(username: params[:username])
+    if User.any? {|user| user.username.match /#{params[:username]}/i}
       flash.now[:taken] = "That username is taken. Please try again."
       erb :'users/signup'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
+      @items = @user.items
       erb :'users/show'
     end
   end
