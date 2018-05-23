@@ -30,6 +30,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/bag'
     else
+      flash[:wrong_password] = "The password you entered was not correct. Please try again."
       redirect '/login'
     end
   end
