@@ -7,7 +7,7 @@
 			 <tr>
 				 <th><a href="/order/name/asc">&#9652;</a>NAME<a href="/order/name/desc">&#9662;</a></th>
 				 <th><a href="/order/type_of_item/asc">&#9652;</a>TYPE<a href="/order/type_of_item/desc">&#9662;</a></th>
-				 <th></a>BRAND</th>
+				 <th><a href="/order/brand/asc">&#9652;</a>BRAND<a href="/order/brand/desc">&#9662;</a></th>
 				 <th><a href="/order/color/asc">&#9652;</a>COLOR<a href="/order/color/desc">&#9662;</a></th>
 				 <th><a href="/order/favorite/desc">&#9652;</a>FAV<a href="/order/favorite/asc">&#9662;</a></th>
 				 <th><a href="/order/need_more/desc">&#9652;</a>MORE<a href="/order/need_more/asc">&#9662;</a></th>
@@ -15,8 +15,8 @@
 			 <%@items.each do |item|%>
 				<tr>
 					<td><a href="/items/<%=item.id%>"><%=item.name%></a></td>
-					<td><%=item.type_of_item if item.type_of_item != nil%></td>
-					<td><%=Brand.find_by(id: item.brand_id).name if item.brand_id != nil%></td>
+					<td><%=item.type_of_item%></td>
+					<td><%=Brand.find_by(id: item.brand_id).name%></td>
 					<td><%=item.color%></td>
 					<td>
 					<%if item.favorite%>
