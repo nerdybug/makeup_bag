@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   get '/order/:column/:direction' do
     @user = User.find_by(id: session[:user_id])
-    @items = @user.items.order("#{params[:column]} #{params[:direction].upcase}")
+    @items = @user.items.order("#{params[:column]} #{params[:direction]}")
     erb :'users/show'
   end
 
