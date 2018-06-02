@@ -30,5 +30,9 @@ class ApplicationController < Sinatra::Base
     def blank?(params_hash) # TRUE if params have blank values
       params_hash.any? {|k,v| v == "" if k != "color"}
     end
+
+    def get_brand_name(brand_id)
+    	Brand.find_by(id: brand_id).name
+    end
   end
 end
