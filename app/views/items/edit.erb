@@ -39,7 +39,7 @@
       <td>
         <select name="brand[name]">
           <option disabled selected>choose existing</option>
-          <%@user.brands.all.each do |brand|%>
+          <%@user.brands.uniq.each do |brand|%>
             <option value="<%=brand.name%>"><%=brand.name%></option>
           <%end%>
         </select>
