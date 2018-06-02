@@ -16,7 +16,7 @@
 				<tr>
 					<td><a href="/items/<%=item.id%>"><%=item.name%></a></td>
 					<td><%=item.type_of_item%></td>
-					<td><%=Brand.find_by(id: item.brand_id).name%></td>
+					<td><%=get_brand_name(item.brand_id)%></td>
 					<td><%=item.color%></td>
 					<td>
 					<%if item.favorite%>
