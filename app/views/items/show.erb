@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <td>Brand:</td>
-    <td><%=Brand.find_by(id: @item.brand_id).name%></td>
+    <td><%=get_brand_name(@item.brand_id)%></td>
   </tr>
   <tr>
     <td>Color:</td>
