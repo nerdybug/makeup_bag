@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
       @item.update(user_id: @user.id)
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
-      @item.brands << @brand if !@user.brands.include?(@brand)
+      @item.brands << @brand
       redirect '/bag'
     end
   end
@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
     elsif !blank?(params[:brand])
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
-      @item.brands << @brand if !@user.brands.include?(@brand)
+      @item.brands << @brand
     end
 
     if !params[:item].include?("favorite") && @item.favorite
