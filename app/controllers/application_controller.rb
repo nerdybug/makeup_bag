@@ -44,5 +44,18 @@ class ApplicationController < Sinatra::Base
     	items_array.each {|item| @names << get_brand_name(item.brand_id)}
     	@names
     end
+    def items_ordered_by(names_in_order)
+    	@new = []
+    	names_in_order.each do |name|
+      	@brand = Brand.find_by(name: name)
+      	@result = @items.select {|item| item.brand_id == @brand.id}
+    		if !@result.is_a? Array
+    		  @new << @result
+    		else
+    		  @result.each {|item| @new << item if !@new.include?(item)}
+    		end
+      end
+    	@new
+    end
   end
 end
