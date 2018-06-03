@@ -36,13 +36,13 @@ class UsersController < ApplicationController
   end
 
   get '/bag' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     @items = @user.items
     erb :'users/show'
   end
 
   get '/order/:column/:direction' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     @items = @user.items.order("#{params[:column]} #{params[:direction]}")
     erb :'users/show'
   end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   get '/bag' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     erb :'users/show'
   end
 end
