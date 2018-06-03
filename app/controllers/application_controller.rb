@@ -44,6 +44,7 @@ class ApplicationController < Sinatra::Base
     	items_array.each {|item| @names << get_brand_name(item.brand_id)}
     	@names
     end
+
     def items_ordered_by(names_in_order)
     	@new = []
     	names_in_order.each do |name|
