@@ -38,5 +38,11 @@ class ApplicationController < Sinatra::Base
     def get_brand_name(brand_id)
     	Brand.find_by(id: brand_id).name
     end
+
+    def collect_names(items_array)
+    	@names = []
+    	items_array.each {|item| @names << get_brand_name(item.brand_id)}
+    	@names
+    end
   end
 end
