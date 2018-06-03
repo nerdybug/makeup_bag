@@ -43,7 +43,17 @@ class UsersController < ApplicationController
 
   get '/order/:column/:direction' do
     @user = get_user
-    @items = @user.items.order("#{params[:column]} #{params[:direction]}")
+    @items = @user.items
+
+    if !params[:column].include?("brand")
+      @items = @user.items.order("#{params[:column]} #{params[:direction]}")
+    elsif params[:direction] == "desc"
+      @names_in_order = collect_names(@items).sort {|x,y| y <=> x}
+      binding.pry
+    else
+      @names_in_order = collect_names(@items).sort
+      binding.pry
+    end
     erb :'users/show'
   end
 
