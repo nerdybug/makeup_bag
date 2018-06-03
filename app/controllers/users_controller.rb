@@ -49,10 +49,12 @@ class UsersController < ApplicationController
       @items = @user.items.order("#{params[:column]} #{params[:direction]}")
     elsif params[:direction] == "desc"
       @names_in_order = collect_names(@items).sort {|x,y| y <=> x}
-      binding.pry
+      @ordered_items = items_ordered_by(@names_in_order)
+      @items = @ordered_items
     else
       @names_in_order = collect_names(@items).sort
-      binding.pry
+      @ordered_items = items_ordered_by(@names_in_order)
+      @items = @ordered_items
     end
     erb :'users/show'
   end
