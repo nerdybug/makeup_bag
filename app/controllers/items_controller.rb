@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   get '/items/add' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     erb :'items/add'
   end
 
@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   post '/items' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     if !valid?(params[:item]) || !valid?(params[:brand]) || blank?(params[:brand]) || blank?(params[:item])
       flash.now[:error] = "You entered invalid data. Please try again."
       erb :'items/add'
@@ -33,13 +33,13 @@ class ItemsController < ApplicationController
   end
 
   get '/items/:id/edit' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     @item = Item.find_by(id: params[:id])
     erb :'items/edit'
   end
 
   patch '/items/:id' do
-    @user = User.find_by(id: session[:user_id])
+    @user = get_user
     @item = Item.find_by(id: params[:id])
 
     if !valid?(params[:item])
