@@ -42,6 +42,11 @@ class ItemsController < ApplicationController
     @user = get_user
     @item = Item.find_by(id: params[:id])
 
+    if @user.id != @item.user_id
+      flash[:wrong_user] = "That item was not yours. Review your items below."
+      redirect '/bag'
+    end
+
     if !valid?(params[:item])
       flash[:error] = "You entered invalid data. Please try again."
       redirect "/items/#{@item.id}/edit"
