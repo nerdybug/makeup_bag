@@ -16,10 +16,10 @@
 			<td><input type="text" name="item[type_of_item]" placeholder="<%=@item.type_of_item%>"></td>
 		<%if @user.items.all != []%>
 		<tr>
-			<td>...or</td>
+			<td></td>
 			<td>
 				<select name="item[type_of_item]">
-					<option disabled selected>choose existing</option>
+					<option disabled selected>...or choose existing</option>
           <%@types = @user.items.collect {|item| item.type_of_item}.uniq%>
           <%@types.each do |type|%>
             <option value="<%=type%>"><%=type%></option>
@@ -35,10 +35,10 @@
     </tr>
     <% if !@user.brands.empty? %>
     <tr>
-      <td>...or</td>
+      <td></td>
       <td>
         <select name="brand[name]">
-          <option disabled selected>choose existing</option>
+          <option disabled selected>...or choose existing</option>
           <%@user.brands.uniq.each do |brand|%>
             <option value="<%=brand.name%>"><%=brand.name%></option>
           <%end%>
