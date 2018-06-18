@@ -18,11 +18,7 @@ class ItemsController < ApplicationController
       flash[:exists] = "That item already exists."
       redirect "/items/#{@user.items.select {|item| item.name.match /#{params[:item][:name]}/i}[0].id}"
     else
-    	@item = Item.create(params[:item])
-      @item.update(user_id: @user.id)
-      @brand = Brand.find_or_create_by(name: params[:brand][:name])
-      @item.update(brand_id: @brand.id)
-      @item.brands << @brand
+      create_item(params)
       redirect '/bag'
     end
   end
@@ -86,6 +82,14 @@ class ItemsController < ApplicationController
       elsif params.include?("need_more") && !@item.need_more
         @item.update(need_more: true)
       end
+    end
+
+    def create_item(params)
+      @item = Item.create(params[:item])
+      @item.update(user_id: @user.id)
+      @brand = Brand.find_or_create_by(name: params[:brand][:name])
+      @item.update(brand_id: @brand.id)
+      @item.brands << @brand
     end
   end
 end
