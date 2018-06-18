@@ -62,19 +62,7 @@ class ItemsController < ApplicationController
       @item.update(brand_id: @brand.id)
       @item.brands << @brand
     end
-
-    if !params[:item].include?("favorite") && @item.favorite
-      @item.update(favorite: false)
-    elsif params[:item].include?("favorite") && !@item.favorite
-      @item.update(favorite: true)
-    end
-
-    if !params[:item].include?("need_more") && @item.need_more
-      @item.update(need_more: false)
-    elsif params[:item].include?("need_more") && !@item.need_more
-      @item.update(need_more: true)
-    end
-
+    handle_booleans(params[:item])
     redirect "/items/#{@item.id}"
   end
 
@@ -83,5 +71,21 @@ class ItemsController < ApplicationController
     @item.destroy
     flash[:deleted] = "The item was deleted."
     redirect '/bag'
+  end
+
+  helpers do
+    def handle_booleans(params)
+      if !params.include?("favorite") && @item.favorite
+        @item.update(favorite: false)
+      elsif params.include?("favorite") && !@item.favorite
+        @item.update(favorite: true)
+      end
+
+      if !params.include?("need_more") && @item.need_more
+        @item.update(need_more: false)
+      elsif params.include?("need_more") && !@item.need_more
+        @item.update(need_more: true)
+      end
+    end
   end
 end
