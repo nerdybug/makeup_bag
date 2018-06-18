@@ -29,6 +29,9 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/bag'
+    elsif !@user
+      flash[:no_user] = "That user does not exist. Please try again."
+      redirect '/login'
     else
       flash[:wrong_password] = "The password you entered was not correct. Please try again."
       redirect '/login'
