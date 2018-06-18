@@ -87,6 +87,9 @@ class ItemsController < ApplicationController
     def create_item(params)
       @item = Item.create(params[:item])
       @item.update(user_id: @user.id)
+      if @item.color == ""
+        @item.update(color: "none")
+      end
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
       @item.brands << @brand
