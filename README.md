@@ -5,25 +5,25 @@ Keep track of your makeup collection with this little web app and ever buy the s
 ## Installation
 
 1. Clone this repo
-```ruby
-git clone https://github.com/nerdybug/makeup_bag.git
-```
+
+  $ git clone https://github.com/nerdybug/makeup_bag.git
+
 2. Execute the following:
-```ruby
-cd makeup_bag
-```
+
+  $ cd makeup_bag
+
 3. Execute the following:
-```ruby
-bundle install
-```
+
+  $ bundle install
+
 4. Execute the following:
-```ruby
-rake db:migrate
-```
+
+  $ rake db:migrate
+
 5. And finally:
-```ruby
-shotgun
-```
+
+  $ shotgun
+
 6. Copy and paste the IP address shotgun provides into your browser and have fun!
 
 ## Contributing
