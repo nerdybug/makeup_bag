@@ -46,6 +46,11 @@ class ItemsController < ApplicationController
     if !valid?(params[:item])
       flash[:error] = "You entered invalid data. Please try again."
       redirect "/items/#{@item.id}/edit"
+    elsif params.include?("item_type") && !params[:item][:type_of_item].empty? && !params[:item_type].empty?
+    	flash[:multiple] = "You cannot enter more than one type or brand. Please try again."
+    	redirect "/items/#{@item.id}/edit"
+    elsif params.include?("item_type")
+      @item.update(type_of_item: params[:item_type])
     else
       params[:item].each {|k,v| @item.update("#{k}": "#{v}") if v != "" && k != "favorite" && k != "need_more"}
     end
@@ -53,7 +58,14 @@ class ItemsController < ApplicationController
     if params.include?("brand") && !valid?(params[:brand])
       flash[:error] = "You entered invalid data. Please try again."
       redirect "/items/#{@item.id}/edit"
-    elsif !blank?(params[:brand])
+    elsif params.include?("brand_name") && !params[:brand][:name].empty? && !params[:brand_name].empty?
+      flash[:multiple] = "You cannot enter more than one type or brand. Please try again."
+      redirect "/items/#{@item.id}/edit"
+    elsif params.include?("brand_name")
+      @brand = Brand.find_or_create_by(name: params[:brand_name])
+      @item.update(brand_id: @brand.id)
+      @item.brands << @brand
+    else
       @brand = Brand.find_or_create_by(name: params[:brand][:name])
       @item.update(brand_id: @brand.id)
       @item.brands << @brand
