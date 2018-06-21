@@ -14,11 +14,11 @@
 		<tr>
 			<td>&#10020; Type:</td>
 			<td><input type="text" name="item[type_of_item]" placeholder="<%=@item.type_of_item%>"></td>
-		<%if @user.items.all != []%>
+		<%if @user.items.count > 1%>
 		<tr>
 			<td></td>
 			<td>
-				<select name="item[type_of_item]">
+				<select name="item_type">
 					<option disabled selected>...or choose existing</option>
           <%@types = @user.items.collect {|item| item.type_of_item}.uniq%>
           <%@types.each do |type|%>
@@ -33,11 +33,11 @@
       <td>&#10020; Brand:</td>
       <td><input type="text" name="brand[name]" placeholder="<%=Brand.find_by(id: @item.brand_id).name%>"></td>
     </tr>
-    <% if !@user.brands.empty? %>
+    <% if @user.brands.count > 1 %>
     <tr>
       <td></td>
       <td>
-        <select name="brand[name]">
+        <select name="brand_name">
           <option disabled selected>...or choose existing</option>
           <%@user.brands.uniq.each do |brand|%>
             <option value="<%=brand.name%>"><%=brand.name%></option>
