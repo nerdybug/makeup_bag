@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
       erb :'items/add'
     elsif @user.items.any? {|item| item.name.match /#{params[:item][:name]}/i}
       flash[:exists] = "That item already exists."
-      redirect "/items/#{@user.items.select {|item| item.name.match /#{params[:item][:name]}/i}[0].id}"
+      redirect "/items/#{@user.items.select {|item| item.name.match /#{params[:item][:name]}/i}[0].id}" # take user to the existing item
     else
       create_item(params)
       redirect '/bag'
@@ -66,15 +66,15 @@ class ItemsController < ApplicationController
 
   helpers do
     def handle_booleans(params)
-      if !params.include?("favorite") && @item.favorite
+      if !params.include?("favorite") && @item.favorite # user deselected a filled checkbox for favorite
         @item.update(favorite: false)
-      elsif params.include?("favorite") && !@item.favorite
+      elsif params.include?("favorite") && !@item.favorite # user selected an empty checkbox for favorite
         @item.update(favorite: true)
       end
 
-      if !params.include?("need_more") && @item.need_more
+      if !params.include?("need_more") && @item.need_more # user deselected a filled checkbox for need_more
         @item.update(need_more: false)
-      elsif params.include?("need_more") && !@item.need_more
+      elsif params.include?("need_more") && !@item.need_more # user selected an empty checkbox for need_more
         @item.update(need_more: true)
       end
     end
@@ -92,7 +92,7 @@ class ItemsController < ApplicationController
 
     def check_type_of_item(params)
     	if params.include?("item_type") && !params[:item][:type_of_item].empty? && !params[:item_type].empty?
-    		flash[:multiple] = "You cannot enter more than one type or brand. Please try again."
+    		multiple_type_or_brand_error # helper
     		redirect "/items/#{@item.id}/edit"
       elsif params.include?("item_type")
         @item.update(type_of_item: params[:item_type])
@@ -106,7 +106,7 @@ class ItemsController < ApplicationController
         flash[:error] = "You entered invalid data. Please try again."
         redirect "/items/#{@item.id}/edit"
       elsif params.include?("brand_name") && !params[:brand][:name].empty? && !params[:brand_name].empty?
-        flash[:multiple] = "You cannot enter more than one type or brand. Please try again."
+        multiple_type_or_brand_error # helper
         redirect "/items/#{@item.id}/edit"
       elsif params.include?("brand_name")
         @brand = Brand.find_or_create_by(name: params[:brand_name])
@@ -117,6 +117,10 @@ class ItemsController < ApplicationController
         @item.update(brand_id: @brand.id)
         @item.brands << @brand
       end
+    end
+
+    def multiple_type_or_brand_error
+      flash[:multiple] = "You cannot enter more than one type or brand. Please try again."
     end
   end
 end
