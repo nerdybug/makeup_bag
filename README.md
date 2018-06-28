@@ -24,7 +24,9 @@ Keep track of your makeup collection with this little web app and ever buy the s
 
     $ shotgun
 
-6. Copy and paste the IP address shotgun provides into your browser and have fun!
+6. Copy and paste the IP address shotgun provides into your browser and have fun playing around*!
+
+* to really use this app, you'd need to host the files on a server so you could view the site without using shotgun
 
 ## Contributing
 
