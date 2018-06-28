@@ -39,13 +39,13 @@ class ApplicationController < Sinatra::Base
     	Brand.find_by(id: brand_id).name
     end
 
-    def collect_names(items_array)
+    def collect_names(items_array) # return array with the brand names of each item
     	@names = []
     	items_array.each {|item| @names << get_brand_name(item.brand_id)}
     	@names
     end
 
-    def items_ordered_by(names_in_order)
+    def items_ordered_by(names_in_order) # return array of brand names in either asc or desc order
     	@new = []
     	names_in_order.each do |name|
       	@brand = Brand.find_by(name: name)
