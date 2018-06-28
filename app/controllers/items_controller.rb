@@ -137,5 +137,6 @@ class ItemsController < ApplicationController
     def blank?(params_hash) # TRUE if params have blank values
       params_hash.any? {|k,v| v == "" if k != "color"}
     end
+
   end
 end
