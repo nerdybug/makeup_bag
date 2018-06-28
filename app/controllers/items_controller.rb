@@ -5,10 +5,6 @@ class ItemsController < ApplicationController
     erb :'items/add'
   end
 
-  get '/error' do
-    erb :'items/error'
-  end
-
   post '/items' do
     @user = get_user
     if !valid?(params[:item]) || !valid?(params[:brand]) || blank?(params[:brand]) || blank?(params[:item])
