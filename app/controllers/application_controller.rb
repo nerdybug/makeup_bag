@@ -19,6 +19,7 @@ class ApplicationController < Sinatra::Base
     def get_user
       User.find_by(id: session[:user_id])
     end
+
     def get_brand_name(brand_id)
       Brand.find_by(id: brand_id).name
     end
