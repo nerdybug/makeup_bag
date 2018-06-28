@@ -122,5 +122,20 @@ class ItemsController < ApplicationController
     def multiple_type_or_brand_error
       flash[:multiple] = "You cannot enter more than one type or brand. Please try again."
     end
+
+    def valid?(params_hash) # TRUE if params are valid (i.e. containing no special characters)
+      strip_string_params(params_hash)
+      !params_hash.any? {|k,v| v =~ /[^a-zA-Z\d\s]/}
+    end
+
+    def strip_string_params(params_hash)
+      params_hash.each do |k,v|
+        params_hash[k] = v.strip
+      end
+    end
+
+    def blank?(params_hash) # TRUE if params have blank values
+      params_hash.any? {|k,v| v == "" if k != "color"}
+    end
   end
 end
